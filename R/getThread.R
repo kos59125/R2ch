@@ -9,26 +9,6 @@ r2ch.getThread <- function(dat.uri)
 
 	dat.uri <- toString(dat.uri[1]);
 
-	removeTags <- function(bytes)
-	{
-		tag.start <- r2ch.matches(bytes, "<");
-		tag.end <- r2ch.matches(bytes, ">");
-		
-		if (length(tag.start) > 0)
-		{
-			if (all(tag.start < tag.end))
-			{
-				tags <- unlist(mapply(":", tag.start, tag.end));
-				bytes <- bytes[-tags];
-			}
-			else
-			{
-				warning("HTML tags were not removed");
-			}
-		}
-		return(bytes);
-	}
-
 	parseDateTime <- function(x)
 	{
 		format <- "%Y/%m/%d(%a) %H:%M:%S";
@@ -109,10 +89,8 @@ r2ch.getThread <- function(dat.uri)
 		message.current <- row[[4]];
 		message.current <- r2ch.splitBytes(message.current, "<br>");
 		message.current <- lapply(message.current, function(s) return(c(s[-c(1, length(s))], newline)));
-		message.current <- lapply(message.current, removeTags);
-		message.current <- lapply(message.current, r2ch.replaceBytes, "&lt;", "<");
-		message.current <- lapply(message.current, r2ch.replaceBytes, "&gt;", ">");
-		message.current <- lapply(message.current, r2ch.replaceBytes, "&amp;", "&");
+		message.current <- lapply(message.current, r2ch.removeTags);
+		message.current <- lapply(message.current, r2ch.decodeHTML);
 		message.current <- unlist(message.current);
 		message.current <- r2ch.rawToChar(message.current[-length(message.current)]);
 		message <- c(message, message.current);
