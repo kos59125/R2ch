@@ -13,6 +13,34 @@ r2ch.decodeHTML <- function(bytes)
 		return(entity[1] == charToRaw("#"));
 	}
 
+	unicodeToRaw <- function(i)
+	{
+		s <- iconv(intToUtf8(i), from = "UTF-8", to = r2ch.specification["encoding"]);
+		if (is.na(s))
+		{
+			s <- "<U+";
+			if (i < 256)
+			{
+				s <- paste(s, "00", as.raw(i), sep = "");
+			}
+			else
+			{
+				unicode <- NULL;
+				while (i > 0)
+				{
+					unicode <- c(as.raw(i %% 256), unicode);
+					i <- floor(i / 256);
+				}
+				for (byte in unicode)
+				{
+					s <- paste(s, byte, sep = "");
+				}
+			}
+			s <- paste(s, ">", sep = "");
+		}
+		return(charToRaw(s));
+	}
+
 	result <- NULL;
 
 	semicolon.matches <- r2ch.matches(bytes, ";");
@@ -53,6 +81,7 @@ r2ch.decodeHTML <- function(bytes)
 			{
 				entity <- rawToChar(entity[-1]);
 			}
+			entity <- unicodeToRaw(as.integer(entity));
 		}
 		else
 		{
@@ -65,11 +94,10 @@ r2ch.decodeHTML <- function(bytes)
 			}
 			else
 			{
-				entity <- entity.temp;
+				entity <- unicodeToRaw(as.integer(entity.temp));
 			}
 		}
-		entity <- intToUtf8(as.integer(entity));
-		result <- c(result, r2ch.charToRaw(entity));
+		result <- c(result, entity);
 
 		previous.semicolon.index <- semicolon.index;
 	}
