@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>R2ch</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+<h1>R2ch</h1>
+<h2>目次</h2>
+<ul>
+	<li><a href="#description">概要</a></li>
+	<li><a href="#environment">動作環境</a></li>
+	<li>
+		<a href="#usage">使い方</a>
+		<ul>
+			<li><a href="#getBoardList"><code>r2ch.getBoardList</code></a></li>
+			<li><a href="#getSubjectList"><code>r2ch.getSubjectList</code></a></li>
+			<li><a href="#getThread"><code>r2ch.getThread</code></a></li>
+			<li><a href="#printThread"><code>r2ch.printThread</code></a></li>
+		</ul>
+	</li>
+	<li><a href="#bug">既知のバグ</a></li>
+</ul>
+
+<h2 id="description">概要</h2>
+<p>
+	R2ch は Pure R で作成されたクロスプラットフォームな２ちゃんねるリーダーです。
+	R の対話環境でスレッドの取得やコンソールへの出力を行うことができます。
+</p>
+
+<h2 id="environment">動作環境</h2>
+<ul>
+	<li>R 2.9.2 以降。</li>
+	<li>日本語フォントが使用できること。</li>
+</ul>
+
+<h2 id="usage">使い方</h2>
+<p>
+	R2ch/R ディレクトリ内のソースコードを全て <code>source</code> 関数で読み込みます。
+	通常使用する関数は以下の 4 つです。
+</p>
+<ul>
+	<li><a href="#getBoardList"><code>r2ch.getBoardList</code></a></li>
+	<li><a href="#getSubjectList"><code>r2ch.getSubjectList</code></a></li>
+	<li><a href="#getThread"><code>r2ch.getThread</code></a></li>
+	<li><a href="#printThread"><code>r2ch.printThread</code></a></li>
+</ul>
+
+<h3 id="getBoardList">r2ch.getBoardList</h3>
+<p>
+	<code>bbsmenu.uri</code> で指定された URI を解析します。
+</p>
+<table>
+	<caption><code>r2ch.getBoardList</code> の引数。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>デフォルト値</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>bbsmenu.uri</code></td>
+			<td><code>"http://menu.2ch.net/bbsmenu.html"</code></td>
+			<td>bbsmenu 互換の HTML の URI。</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<caption><code>r2ch.getBoardList</code> の戻り値データフレーム。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>Category</code></td>
+			<td>カテゴリ名。</td>
+		</tr>
+		<tr>
+			<td><code>Name</code></td>
+			<td>板名。</td>
+		</tr>
+		<tr>
+			<td><code>URI</code></td>
+			<td>板 (ホストではない) のルート URI。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 id="getSubjectList">r2ch.getSubjectList</h3>
+<p>
+	<code>server.uri</code> で指定されたサーバーから subject.txt を取得して解析します。
+</p>
+<table>
+	<caption><code>r2ch.getSubjectList</code> の引数。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>デフォルト値</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>server.uri</code></td>
+			<td>なし</td>
+			<td>板の URI。プロキシサーバーには対応していません。</td>
+		</tr>
+		<tr>
+			<td><code>bg20</code></td>
+			<td><code>FALSE</code></td>
+			<td>結果の <code>DAT</code> 列の URI を bg20 鯖のものにするか。</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<caption><code>r2ch.getSubjectList</code> の戻り値データフレーム。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>DAT</code></td>
+			<td>DAT ファイルの URI。</td>
+		</tr>
+		<tr>
+			<td><code>Subject</code></td>
+			<td>スレッドのタイトル。</td>
+		</tr>
+		<tr>
+			<td><code>Count</code></td>
+			<td>スレッドのレス数。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 id="getThread">r2ch.getThread</h3>
+<p>
+	<code>dat.uri</code> で指定された URI を解析します。
+</p>
+<table>
+	<caption><code>r2ch.getThread</code> の引数。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>デフォルト値</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>dat.uri</code></td>
+			<td>なし</td>
+			<td>DAT ファイルの URI。</td>
+		</tr>
+	</tbody>
+</table>
+<table>
+	<caption><code>r2ch.getSubjectList</code> の戻り値データフレーム。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>Subject</code></td>
+			<td>スレッドのタイトル。</td>
+		</tr>
+		<tr>
+			<td><code>Number</code></td>
+			<td>レス番号。</td>
+		</tr>
+		<tr>
+			<td><code>Trip</code></td>
+			<td>トリップ。</td>
+		</tr>
+		<tr>
+			<td><code>Email</code></td>
+			<td>メールアドレス。</td>
+		</tr>
+		<tr>
+			<td><code>ID</code></td>
+			<td>ID。</td>
+		</tr>
+		<tr>
+			<td><code>BE</code></td>
+			<td>BE ID。</td>
+		</tr>
+		<tr>
+			<td><code>DateTime</code></td>
+			<td>投稿日時。 1970-01-01 <strong>09</strong>:00:00 (UTC) からの経過秒数。</td>
+		</tr>
+		<tr>
+			<td><code>Message</code></td>
+			<td>本文。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3 id="printThread">r2ch.printThread</h3>
+<p>
+	<code>thread</code> で指定されたスレッドデータフレームを <code>by</code> で指定されたレス数ずつ出力します。
+	レスがすべて出力されていない場合， <code>Enter</code> を押すたびに次のレスが出力されます。
+	出力を中断したい場合は <code>q</code> をタイプしてから <code>Enter</code> を押します。
+</p>
+
+<table>
+	<caption><code>r2ch.printThread</code> の引数。</caption>
+	<thead>
+		<tr>
+			<th>名前</th>
+			<th>デフォルト値</th>
+			<th>説明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>thread</code></td>
+			<td>なし</td>
+			<td>スレッドのデータフレーム。</td>
+		</tr>
+		<tr>
+			<td><code>index</code></td>
+			<td><code>1 : nrow(thread)</code></td>
+			<td><code>thread</code> データフレームの，出力する行番号。</td>
+		</tr>
+		<tr>
+			<td><code>by</code></td>
+			<td><code>1</code></td>
+			<td>1 回に出力するレス数。</td>
+		</tr>
+		<tr>
+			<td><code>format</code></td>
+			<td>
+<pre><code>function(post)
+{
+	email &lt;- sprintf(&quot;[%s]&quot;, post$Email);
+	datetime &lt;- strftime(as.POSIXct(post$DateTime, origin = &quot;1970-01-01 09:00:00&quot;), &quot;%Y/%m/%d(%a) %H:%M:%S&quot;)
+	header &lt;- paste(post$Number, post$Name, email, datetime);
+	message &lt;- paste(&quot;--&quot;, header, &quot;--&quot;, post$Message, sep = &quot;\n&quot;);
+	return(message);
+}</code>
+</pre>
+	</td>
+			<td>出力整形関数。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 id="bug">既知のバグ</h2>
+<ul>
+	<li>UTF-8 エンコーディング下で解決されるべき実体参照 (e.g. &amp;hearts; → &hearts;) が Unicode の文字表記 (<code>U+HHHH</code>) になる。</li>
+</ul>
+
+</body>
+
+</html>
