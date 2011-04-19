@@ -21,15 +21,18 @@
 # THE SOFTWARE.
 
 ## 指定した URI のデータをバイナリとして取得し， LF (0A) で区切ったリストを返します。
-r2ch.getURI <- function(uri)
+r2ch.getURI <- function(uri, buffer.size = 0x1000)
 {
+	if (buffer.size <= 0)
+	{
+		stop("buffer.size must be greater than 0.");
+	}
 	if (length(uri) > 1)
 	{
 		warning("only the first element will be used.");
 	}
 	
 	bytes <- NULL;
-	buffer.size <- 0x1000;  # 4 KiB
 
 	connection <- url(uri[1], open = "rb");
 	while (length(buffer <- readBin(connection, raw(), buffer.size)) > 0)
