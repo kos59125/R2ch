@@ -1,6 +1,5 @@
-## Ensure you have already read all sources in R2ch/R.
-# f <- list.files();  # in the source directory.
-# for (i in 1 : length(f)) source(f[i]);
+## Ensure you have already read all sources in R2ch/R like the following.
+# for (src in list.files("R")) source(paste("R", src, sep = "/"));
 
 # 板一覧を取得。
 bbs <- r2ch.getBoardList();
