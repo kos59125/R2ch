@@ -58,7 +58,7 @@ r2ch.getThread <- function(dat.uri)
 	be <- NULL;
 	message <- NULL;
 	
-	separator <- r2ch.specification["separator"];
+	separator <- "<>";
 	thread <- lapply(thread, r2ch.splitBytes, separator);
 
 	newline <- r2ch.charToRaw("\n");

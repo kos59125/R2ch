@@ -39,7 +39,7 @@ r2ch.getSubjectList <- function(server.uri, bg20 = FALSE)
 	name <- NULL;
 	count <- NULL;
 	
-	separator <- r2ch.specification["separator"];
+	separator <- "<>";
 	subject <- lapply(subject, r2ch.splitBytes, separator);
 
 	for (i in 1 : length(subject))

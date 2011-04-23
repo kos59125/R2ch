@@ -29,7 +29,7 @@ r2ch.rawToChar <- function(bytes)
 	}
 	
 	string <- rawToChar(bytes);
-	string <- iconv(string, from = r2ch.specification["encoding"], sub = "byte");
+	string <- iconv(string, from = "Shift_JIS", sub = "byte");
 
 	return(string);
 }
@@ -42,7 +42,7 @@ r2ch.charToRaw <- function(string)
 		return(NULL);
 	}
 
-	string <- iconv(string, to = r2ch.specification["encoding"]);
+	string <- iconv(string, to = "Shift_JIS");
 	bytes <- charToRaw(string);
 
 	return(bytes);
