@@ -24,6 +24,7 @@
 			<li><a href="#printThread"><code>r2ch.printThread</code></a></li>
 		</ul>
 	</li>
+	<li><a href="#package">パッケージ化</a></li>
 	<li><a href="#bug">既知のバグ</a></li>
 </ul>
 
@@ -41,7 +42,7 @@
 
 <h2 id="usage">使い方</h2>
 <p>
-	R2ch/R ディレクトリ内のソースコードを全て <code>source</code> 関数で読み込みます。
+	src/R/ ディレクトリ内のソースコードを全て <code>source</code> 関数で読み込みます。
 	通常使用する関数は以下の 4 つです。
 </p>
 <ul>
@@ -50,6 +51,9 @@
 	<li><a href="#getThread"><code>r2ch.getThread</code></a></li>
 	<li><a href="#printThread"><code>r2ch.printThread</code></a></li>
 </ul>
+<div class="note">
+<p>パッケージをインストールした場合は先頭の <code>r2ch.</code> は不要です。</p>
+</div>
 
 <h3 id="getBoardList">r2ch.getBoardList</h3>
 <p>
@@ -260,6 +264,19 @@
 		</tr>
 	</tbody>
 </table>
+
+<h2 id="package">パッケージ化</h2>
+<p>
+以下の手順により R2ch をパッケージとしてインストールできます。
+</p>
+<ol>
+	<li>src/ ディレクトリに移動します。</li>
+	<li><code>Rscript --vanilla package.R</code> を実行します。</li>
+	<li><code>R CMD INSTALL R2ch</code> を実行します。</li>
+</ol>
+<div class="note">
+<p>インストールには適切な権限が必要です。</p>
+</div>
 
 <h2 id="bug">既知のバグ</h2>
 <ul>

@@ -9,4 +9,4 @@ MIT License
 License.txt を参照してください。
 
 ● URI
-http://project.recyclebin.jp/repos/junk/r2ch/
+https://bitbucket.org/kos59125/r2ch/
