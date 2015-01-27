@@ -1,0 +1,11 @@
+Package: R2ch
+Type: Package
+Title: R2ch package
+Version: 0.1
+Date: 2011-04-23
+Author: Kosei ABE
+Maintainer: Kosei ABE <mail@recyclebin.jp>
+Description: A reader of the 2ch bulletin board.
+License: MIT + file LICENSE
+BugReports: https://github.com/kos59125/r2ch/issues
+Suggests: testthat
