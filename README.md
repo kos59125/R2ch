@@ -26,4 +26,8 @@ Documents 内の HTML ファイルを参照してください。
 MIT License
 License.txt を参照してください。
 
-使い方
+その他
+------
+
+* [製作時発表資料](http://blog.recyclebin.jp/archives/1375)
+
