@@ -1,4 +1,4 @@
-https://travis-ci.org/kos59125/r2ch.svg?branch=master
+[![Build Status](https://travis-ci.org/kos59125/r2ch.svg?branch=master)](https://travis-ci.org/kos59125/r2ch)
 
 R2ch
 ====
