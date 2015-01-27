@@ -20,8 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-## 板一覧をデータフレームとして取得します。
-r2ch.getBoardList <- function(bbsmenu.uri = "http://menu.2ch.net/bbsmenu.html")
+#' 板一覧
+#' 
+#' 板一覧をデータフレームとして取得します。
+#' 
+#' @param bbsmenu.uri
+#'    メニューの URI
+#' 
+#' @details
+#' 以下のデータフレームが返ります。
+#' 
+#' \code{Category}   カテゴリ名。
+#' 
+#' \code{Name}	板名。
+#' 
+#' \code{URI}	板 (ホストではない) のルート URI。
+#' 
+#' @export
+getBoardList <- function(bbsmenu.uri = "http://menu.2ch.net/bbsmenu.html")
 {
 	if (length(bbsmenu.uri) > 1)
 	{

@@ -20,8 +20,23 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-## スレッドの内容をコンソールに出力します。
-r2ch.printThread <- function(thread, index = 1 : nrow(thread), by = 1,
+#' レス出力
+#' 
+#' スレッドの内容をコンソールに出力します。
+#' 1 回の出力でレスが完了しない場合， Enter を押すたびに次のレスが出力されます。
+#' 出力を中断したい場合は q をタイプしてから Enter を押します。
+#' 
+#' @param thread
+#'    スレッドデータフレーム。
+#' @param index
+#'    出力するレス番号。
+#' @param by
+#'    1 回に出力するレス数。
+#' @param format
+#'    レスの出力フォーマット関数。
+#' 
+#' @export
+printThread <- function(thread, index = 1 : nrow(thread), by = 1,
 		format = function(post)
 		{
 			email <- sprintf("[%s]", post$Email);

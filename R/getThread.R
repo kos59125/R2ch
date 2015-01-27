@@ -20,9 +20,35 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-## スレッドをデータフレームとして取得します。
-## 時刻は 1970 年 1 月 1 日午前 9 時 0 分 0 秒からの経過秒数として表されます。
-r2ch.getThread <- function(dat.uri)
+#' スレ
+#' 
+#' スレッドをデータフレームとして取得します。
+#' 時刻は 1970 年 1 月 1 日午前 9 時 0 分 0 秒からの経過秒数として表されます。
+#' 
+#' @param dat.uri
+#'    DAT ファイルの URI
+#' 
+#' @details
+#' 以下のデータフレームが返ります。
+#' 
+#' \code{Subject}   スレッドのタイトル。
+#' 
+#' \code{Number}	レス番号。
+#' 
+#' \code{Trip}	トリップ。
+#' 
+#' \code{Email}	メールアドレス。
+#' 
+#' \code{ID}	ID。
+#' 
+#' \code{BE}	BE ID。
+#' 
+#' \code{DateTime}	投稿日時。 1970-01-01 09:00:00 (UTC) からの経過秒数。
+#' 
+#' \code{Message}	本文。
+#' 
+#' @export
+getThread <- function(dat.uri)
 {
 	if (length(dat.uri) > 1)
 	{

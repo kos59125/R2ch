@@ -8,4 +8,3 @@ Maintainer: Kosei ABE <mail@recyclebin.jp>
 Description: A reader of the 2ch bulletin board.
 License: MIT + file LICENSE
 BugReports: https://github.com/kos59125/r2ch/issues
-Suggests: testthat

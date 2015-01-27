@@ -20,8 +20,26 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-## スレッド一覧をデータフレームとして取得します。
-r2ch.getSubjectList <- function(server.uri, bg20 = FALSE)
+#' スレタイ一覧
+#' 
+#' スレッド一覧をデータフレームとして取得します。
+#' 
+#' @param server.uri
+#'    鯖 URI
+#' @param
+#'    bg20 鯖を利用するか
+#' 
+#' @details
+#' 以下のデータフレームが返ります。
+#' 
+#' \code{DAT}   DAT ファイルの URI。
+#' 
+#' \code{Subject}   スレッドのタイトル。
+#' 
+#' \code{Count}	スレッドのレス数。
+#' 
+#' @export
+getSubjectList <- function(server.uri, bg20 = FALSE)
 {
 	if (length(server.uri) > 1)
 	{
