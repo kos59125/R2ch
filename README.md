@@ -28,6 +28,7 @@ License.txt を参照してください。
 
 その他
 ------
-
+* そのうち使えなくなると思います。
+   * [2ちゃんねるがdatを近日廃止、さらにウェブスクレイピングを用いた専用ブラウザ開発・公開は禁止して2015年3月3日以降はAPI経由の許諾制に](http://gigazine.net/news/20150216-developer-2ch-net/)
 * [製作時発表資料](http://blog.recyclebin.jp/archives/1375)
 
